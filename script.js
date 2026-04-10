@@ -8,16 +8,22 @@ const resultMeta  = document.getElementById('resultMeta');
 
 function setLoading(msg = 'Fetching data…') {
     statusMsg.className = 'alert alert-info d-flex align-items-center gap-2';
-    statusMsg.innerHTML = `
-        <div class="spinner-border spinner-border-sm" role="status"></div>
-        <span>${msg}</span>`;
+    // Use textContent to prevent XSS from user-supplied search queries
+    statusMsg.innerHTML = '<div class="spinner-border spinner-border-sm" role="status"></div>';
+    const span = document.createElement('span');
+    span.textContent = msg;
+    statusMsg.appendChild(span);
     countryList.innerHTML = '';
     resultMeta.className = 'text-muted small mb-2 d-none';
 }
 
 function setError(msg) {
     statusMsg.className = 'alert alert-danger';
-    statusMsg.innerHTML = `<i class="fa-solid fa-circle-exclamation me-2"></i>${msg}`;
+    // Use textContent to prevent XSS from error messages
+    statusMsg.innerHTML = '<i class="fa-solid fa-circle-exclamation me-2"></i>';
+    const span = document.createElement('span');
+    span.textContent = msg;
+    statusMsg.appendChild(span);
     countryList.innerHTML = '';
     resultMeta.className = 'text-muted small mb-2 d-none';
 }
@@ -339,7 +345,8 @@ async function showCountryDetails(country) {
                 const cond  = weather.current?.condition?.text  || 'N/A';
                 const tempC = weather.current?.temp_c           ?? 'N/A';
                 const tempF = weather.current?.temp_f           ?? 'N/A';
-                const feels = weather.current?.feelslike_c      ?? 'N/A';
+                const feels  = weather.current?.feelslike_c      ?? 'N/A';
+                const feelsF = weather.current?.feelslike_f      ?? 'N/A';
                 const hum   = weather.current?.humidity         ?? 'N/A';
                 const wind  = weather.current?.wind_kph         ?? 'N/A';
                 const windD = weather.current?.wind_dir         || '';
@@ -358,7 +365,7 @@ async function showCountryDetails(country) {
                     </div>
                     <div class="row text-center g-2">
                         ${weatherStat('<i class="fa-solid fa-temperature-half"></i>', `${tempC}°C / ${tempF}°F`, 'Temperature')}
-                        ${weatherStat('<i class="fa-solid fa-face-smile-wink"></i>', `${feels}°C`, 'Feels Like')}
+                        ${weatherStat('<i class="fa-solid fa-face-smile-wink"></i>', `${feels}°C / ${feelsF}°F`, 'Feels Like')}
                         ${weatherStat('<i class="fa-solid fa-droplet"></i>', `${hum}%`, 'Humidity')}
                         ${weatherStat('<i class="fa-solid fa-wind"></i>', `${wind} km/h ${windD}`, 'Wind')}
                         ${weatherStat('<i class="fa-solid fa-sun"></i>', String(uv), 'UV Index')}
