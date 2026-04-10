@@ -1,21 +1,282 @@
+/* ─── Base ──────────────────────────────────────────────────────────────── */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #1a1a2e;
 }
 
-.container {
-    max-width: 1200px;
+/* ─── Navbar ────────────────────────────────────────────────────────────── */
+.navbar {
+    padding: 0.75rem 1.5rem;
 }
 
-.card-body {
+.navbar-brand {
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+}
+
+#searchInput {
+    min-width: 220px;
+    border-radius: 20px;
+    padding-left: 1rem;
+}
+
+.navbar .btn-light {
+    border-radius: 20px;
+    padding: 0.375rem 1rem;
+}
+
+/* ─── Hero ──────────────────────────────────────────────────────────────── */
+.hero-section {
+    background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 60%, #002171 100%);
+    color: #fff;
+    padding: 4rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.hero-input {
+    border-radius: 25px;
+    padding: 0.6rem 1.25rem;
+    font-size: 1rem;
+    min-width: 240px;
+    max-width: 380px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.hero-section .btn-light {
+    border-radius: 25px;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* ─── Region Buttons ────────────────────────────────────────────────────── */
+.region-btn {
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+
+.region-btn.active,
+.region-btn:hover {
+    background-color: #1a73e8;
+    border-color: #1a73e8;
+    color: #fff;
+}
+
+/* ─── Cards ─────────────────────────────────────────────────────────────── */
+.country-card {
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.country-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.14) !important;
+}
+
+.flag-wrapper {
+    background: #e8eef5;
+    padding: 0;
+    height: 180px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flag-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+/* ─── Info Grid ─────────────────────────────────────────────────────────── */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.45rem 0.75rem;
+    font-size: 0.82rem;
+}
+
+.info-item {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 200px;
 }
 
-.card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+.info-label {
+    font-weight: 600;
+    color: #555;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.info-item > span:last-child {
+    color: #1a1a2e;
+    word-break: break-word;
+}
+
+/* ─── More Details Button ───────────────────────────────────────────────── */
+.more-details-btn {
+    background: linear-gradient(135deg, #1a73e8, #0d47a1);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.more-details-btn:hover {
+    opacity: 0.9;
+}
+
+/* ─── Modal ─────────────────────────────────────────────────────────────── */
+.modal-header-country {
+    background: linear-gradient(135deg, #1a73e8, #0d47a1);
+    color: #fff;
+    border-radius: 0;
+    padding: 1.25rem 1.5rem;
+    align-items: center;
+}
+
+.modal-flag-img {
+    width: 72px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 2px solid rgba(255,255,255,0.4);
+}
+
+.section-heading {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #1a73e8;
+    border-bottom: 2px solid #e8eef5;
+    padding-bottom: 0.35rem;
+    margin-bottom: 0.75rem;
+}
+
+.detail-table th {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #555;
+    white-space: nowrap;
+    width: 40%;
+    border: none;
+    padding: 0.3rem 0.5rem;
+    background: transparent;
+}
+
+.detail-table td {
+    font-size: 0.85rem;
+    color: #1a1a2e;
+    border: none;
+    padding: 0.3rem 0.5rem;
+}
+
+.detail-table tr:nth-child(odd) td,
+.detail-table tr:nth-child(odd) th {
+    background: #f5f7ff;
+}
+
+/* ─── Border Badges ─────────────────────────────────────────────────────── */
+.border-badge {
+    background: #e8eef5;
+    color: #1a1a2e;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.3em 0.65em;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+/* ─── Weather Box ───────────────────────────────────────────────────────── */
+.weather-box {
+    background: linear-gradient(135deg, #e8f0fe, #d2e3fc);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.weather-icon {
+    width: 64px;
+    height: 64px;
+}
+
+.weather-stat {
+    background: rgba(255,255,255,0.75);
+    border-radius: 10px;
+    padding: 0.6rem 0.4rem;
+}
+
+.weather-stat-icon {
+    font-size: 1.1rem;
+    color: #1a73e8;
+    margin-bottom: 0.2rem;
+}
+
+.weather-stat-value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.weather-stat-label {
+    font-size: 0.7rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+/* ─── Status Messages ───────────────────────────────────────────────────── */
+#statusMsg {
+    font-size: 0.95rem;
+}
+
+/* ─── Footer ────────────────────────────────────────────────────────────── */
+footer a {
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ─── Responsive tweaks ─────────────────────────────────────────────────── */
+@media (max-width: 576px) {
+    .hero-section {
+        padding: 2.5rem 1rem;
+    }
+
+    .hero-input {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
 }
