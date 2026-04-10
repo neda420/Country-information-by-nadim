@@ -1,84 +1,164 @@
-**Country and weather Info Webpage**
+# 🌍 Country Info Explorer
 
-**This project is a simple, responsive webpage that provides information about countries. The webpage includes a search feature for users to find specific countries and displays the results dynamically. The project uses modern web technologies such as HTML, CSS, JavaScript, and Bootstrap.**
+A responsive, single-page web application that lets you explore detailed information and live weather for every country on Earth.
 
-1. Features:
+---
 
-Responsive Design: The webpage is built using Bootstrap 5 for a mobile-first, responsive layout.
+## ✨ Features
 
-Search Functionality: Users can search for countries using a search bar.
+### 🔎 Search & Filter
+- **Dual search bars** — one in the sticky navbar and one in the hero section; both support the **Enter** key.
+- **Region filter buttons** — instantly browse countries by region: Africa, Americas, Asia, Europe, Oceania, and Antarctic.
+- Results are sorted alphabetically when browsing by region.
 
-Dynamic Country List: Country information is dynamically displayed in a grid layout.
+### 🗺️ Country Cards
+Each result card displays:
+| Field | Details |
+|---|---|
+| Flag | Full-width SVG flag image |
+| Name | Common name + official name |
+| Region | Region · Subregion |
+| Population | Formatted number |
+| Capital | First listed capital |
+| Area | In km² |
+| Languages | Up to 3 spoken languages |
+| Currency | Name and symbol |
 
-Footer: A simple footer with copyright information.
+### 📋 Full Details Modal
+Click **Full Details & Weather** on any card to open a scrollable modal with:
 
-2. Files
+**General Information**
+- Region, Subregion, Continent
+- Capital, Population, Area, Landlocked status, Start of Week
+- Languages, Currencies, Calling Code, Internet TLD
+- Driving side, ISO codes (alpha-2 / alpha-3)
+- Independent & UN Member status
 
-index.html: The main HTML structure of the webpage.
+**Timezones** — complete list of all timezones for the country.
 
-style.css: Custom styles for enhancing the appearance of the webpage.
+**Bordering Countries** — ISO-3 badge list with count.
 
-script.js: JavaScript logic for dynamic functionality, including the search feature.
+**Maps** — direct links to Google Maps and OpenStreetMap.
 
-3. Prerequisites
+**Live Weather** (for the capital city):
+- Condition with icon, Temperature (°C / °F), Feels Like (°C / °F)
+- Humidity, Wind speed & direction, UV Index, Visibility, Pressure, Cloud Cover
 
-Ensure you have the following before starting:
+### 🎨 UI / UX
+- Animated hero section with gradient background.
+- Hover-lift effect on country cards.
+- Accessible loading spinners and error alerts.
+- XSS-safe status messages using `textContent`.
+- Fully **responsive** layout — works on mobile, tablet, and desktop.
 
-A modern web browser (e.g., Chrome, Firefox, Edge).
+---
 
-An internet connection to load external libraries (Bootstrap).
+## 📁 File Structure
 
-4. Getting Started
+```
+/
+├── index.html        # Page structure (navbar, hero, region filters, card grid, footer)
+├── script.js         # Core logic: search, region filter, card rendering, detail modal
+├── weather_api.js    # WeatherAPI integration (ES6 module export)
+├── css/
+│   └── style.css     # Custom styles (hero, cards, modal, weather box, responsive tweaks)
+├── LICENSE
+└── README.md
+```
 
-a. Clone the Repository:
+---
 
-b. git clone <repository-url>
-  cd <repository-directory>
+## 🛠️ Technologies
 
-c. File Structure:
- Ensure the following file structure:
+| Technology | Version | Purpose |
+|---|---|---|
+| HTML5 | — | Page structure |
+| CSS3 | — | Custom styles |
+| JavaScript | ES6 Modules | Dynamic behaviour |
+| Bootstrap | 5.3.0 | Layout & UI components |
+| Font Awesome | 6.4.0 | Icons |
+| REST Countries API | v3.1 | Country data |
+| WeatherAPI | current | Live weather data |
 
-/project-directory
-|-- index.html
-|-- style.css
-|-- script.js
+---
 
-d. Open the Application:
-Open index.html in a web browser to view the webpage.
+## 🌐 External APIs
 
-5. Dependencies
+| API | Endpoint | Usage |
+|---|---|---|
+| [REST Countries](https://restcountries.com) | `https://restcountries.com/v3.1/name/{name}` | Search by country name |
+| [REST Countries](https://restcountries.com) | `https://restcountries.com/v3.1/region/{region}` | Browse by region |
+| [WeatherAPI](https://www.weatherapi.com) | `https://api.weatherapi.com/v1/current.json` | Live weather for capital city |
 
-Bootstrap 5.3: For styling and layout. Loaded via CDN.
+---
 
-JavaScript (ES6 Modules): For dynamic behavior.
+## 🚀 Getting Started
 
- Development Guide
+### Prerequisites
+- A modern web browser (Chrome, Firefox, Edge, Safari).
+- An active internet connection (required for CDN libraries and APIs).
 
- Adding Styles
+### Run Locally
 
- Modify the style.css file to customize the look and feel of the webpage.
+```bash
+git clone https://github.com/neda420/Country-information-by-nadim.git
+cd Country-information-by-nadim
+```
 
- Modifying JavaScript
+Open `index.html` directly in your browser — no build step or server required.
 
- Edit the script.js file to enhance or change the dynamic behavior of the page. Ensure that type="module" is specified in the script tag for ES6 module 
- compatibility.
+> **Note:** `script.js` uses ES6 `import`/`export` (`type="module"`). Some browsers block module imports for local `file://` URLs. If the page doesn't work, serve it with a simple local server:
+> ```bash
+> # Python 3
+> python -m http.server 8080
+> # Then open http://localhost:8080
+> ```
 
-6.External Libraries:
+---
 
- The project uses the following CDN links:
+## 🔧 Development Guide
 
- Bootstrap CSS:
+### Styles
+Edit `css/style.css` to customise colours, spacing, or component appearance.
+Key CSS sections: `Base`, `Navbar`, `Hero`, `Region Buttons`, `Cards`, `Info Grid`, `Modal`, `Weather Box`, `Responsive tweaks`.
 
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+### JavaScript
+- **`script.js`** — add new card fields, change sorting, extend the detail modal, or add new API endpoints.  
+  Always keep `type="module"` on the `<script>` tag in `index.html`.
+- **`weather_api.js`** — update the `WEATHER_API_KEY` or swap in a different weather provider here.
 
- Bootstrap JS:
+### Adding a New Region Filter
+1. Add a `<button class="btn btn-outline-primary region-btn" data-region="YourRegion">` in `index.html`.
+2. The existing event listener in `script.js` will pick it up automatically.
 
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+---
 
-7.Credits:
+## 📦 CDN Links
 
- Md Nadimul Islam: Creator and owner of the project.
+```html
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
- Bootstrap: For providing CSS and JS libraries.
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the terms of the [LICENSE](LICENSE) file in this repository.
+
+---
+
+## 👤 Credits
+
+- **Md Nadimul Islam** — Creator and maintainer.
+- [Bootstrap](https://getbootstrap.com) — CSS & JS framework.
+- [Font Awesome](https://fontawesome.com) — Icon library.
+- [REST Countries](https://restcountries.com) — Free country data API.
+- [WeatherAPI](https://www.weatherapi.com) — Live weather data API.
 
