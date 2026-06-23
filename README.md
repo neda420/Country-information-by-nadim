@@ -13,6 +13,7 @@ A responsive, single-page web application that lets you explore detailed informa
 <img width="1919" height="970" alt="Screenshot 2026-04-11 005825" src="https://github.com/user-attachments/assets/280f05b5-8d40-4364-a20f-85772c15c7a9" />
 <img width="1916" height="974" alt="Screenshot 2026-04-11 005803" src="https://github.com/user-attachments/assets/acdd7940-3084-4a7b-beec-bc120d927456" />
 <img width="992" height="462" alt="Screenshot 2026-04-11 005719" src="https://github.com/user-attachments/assets/7ac7c442-3486-4b2b-939d-3d6d63df4e00" />
+
 ### 🗺️ Country Cards
 Each result card displays:
 | Field | Details |
