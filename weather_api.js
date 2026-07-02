@@ -2,6 +2,7 @@ export async function fetchWeather(city) {
     const WEATHER_API_KEY = '1e3b85e050384eb5a6135658240312';
     const WEATHER_API_URL = 'https://api.weatherapi.com/v1/current.json';
 
+    
     try {
         console.log(`Fetching weather for city: ${city}`);
         const response = await fetch(`${WEATHER_API_URL}?key=${WEATHER_API_KEY}&q=${encodeURIComponent(city)}`);
