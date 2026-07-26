@@ -2,6 +2,7 @@
 # 🌍 Country Info Explorer
 
 A responsive, single-page web application that lets you explore detailed information and live weather for every country on Earth.
+
 ## ✨ Features
 ### 🔎 Search & Filter
 - **Dual search bars** — one in the sticky navbar and one in the hero section; both support the **Enter** key.
